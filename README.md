@@ -33,6 +33,11 @@ ___________
 
 Zillow, a real-estate listing website, is looking to improve their model that predicts property value.  By applying a model that can accurately predict their model's error, they can adjust the predictions of their existing model, resulting in a more accurate prediction.
 
+*Agile Story Format:*
+> `Zillow` wants
+> `predictions of logerror`
+> so that they can `reduce logerror`.
+
 
 ### Deliverables
 
@@ -57,7 +62,7 @@ For the machine learning model:
 ### Initial Hypothesis
 Just like with any scientific endeavor, it is important to form a hypothesis when approaching a Data Science project.  The hypothesis gives us something concrete to start testing against.  How truthful the initial hypothesis turns out to be is ultimately unimportant since this is an iterive process and there will likely be many hypotheses throughout the life of the project.  The important part is to give us a starting point.  For the purposes of this project my initial hypothesis will be:
 
-> Zillow's model performs worst on oulier data.
+> Certain groups of homes are more affected by logerror than others.
 
 
 ### Data Dictionary   
@@ -146,6 +151,7 @@ Just like with any scientific endeavor, it is important to form a hypothesis whe
     - Use data visualization and statistical testing to confirm or reject hypotheses.
     - Develop new hypotheses along the way.
     - Identify features and/or engineer new ones that may be useful for modeling.
+    - Create clustering models and determine their usefulness in predicting the target variable (`logerror`)
 - Model (`model.ipynb`)
     - Develop baseline prediction to compare future models against.
     - Develop models and compare them to the baseline model.
