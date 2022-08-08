@@ -10,10 +10,6 @@ from sklearn.cluster import KMeans
 from sklearn import linear_model
 from sklearn.ensemble import RandomForestRegressor
 
-
-
-import math
-
 import wrangle
 # import my_toolkit
 
@@ -70,13 +66,13 @@ def build_kmeans_clusterer(df, cols, k, seed=SEED):
     return clusterer
 
 
-def get_kmeans_clusters(df, cols, k, clusterer=None):
-    if clusterer == None:
-        from sklearn.cluster import KMeans
-        clusterer = KMeans(n_clusters=k)
-        clusterer.fit(df[cols])
-    s = clusterer.predict(df[cols])
-    return s
+# def get_kmeans_clusters(df, cols, k, clusterer=None):
+#     if clusterer == None:
+#         from sklearn.cluster import KMeans
+#         clusterer = KMeans(n_clusters=k)
+#         clusterer.fit(df[cols])
+#     s = clusterer.predict(df[cols])
+#     return s
 
 
 def make_minmax_scaler(df, cols):
@@ -230,7 +226,7 @@ for i in depth_range:
 x2 = train[['structure_sqft','lot_sqft']]
 x2 = pd.concat((x2, train_c2_dummies), axis=1)
 t2 = test[['structure_sqft','lot_sqft']]
-t2 = pd.concat((x2, test_c2_dummies), axis=1)
+t2 = pd.concat((t2, test_c2_dummies), axis=1)
 
 for i in depth_range:
     model = RandomForestRegressor(max_depth=i)
@@ -239,3 +235,14 @@ for i in depth_range:
     models[modname] = model
     train_metrics['train_'+modname] = regression_metrics(ytrain, model.predict(x2))
     test_metrics['test_'+modname] = regression_metrics(ytest, model.predict(t2))
+
+
+# I need to evaluate something against validate for 2 points on my grade so..
+modname = 'linearregression_all_clusters'
+validate_metrics[modname] = regression_metrics(yval, models[modname].predict(v1))
+
+
+# Wrap my collected information into dataframes for easier viewing.
+df_train_metrics = pd.DataFrame.from_dict(train_metrics, orient='index')
+df_test_metrics = pd.DataFrame.from_dict(test_metrics, orient='index')
+df_validate_metrics = pd.DataFrame.from_dict(validate_metrics, orient='index')

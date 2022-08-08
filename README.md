@@ -34,9 +34,9 @@ ___________
 Zillow, a real-estate listing website, is looking to improve their model that predicts property value.  By applying a model that can accurately predict their model's error, they can adjust the predictions of their existing model, resulting in a more accurate prediction.
 
 *Agile Story Format:*
-> `Zillow` wants
-> `predictions of logerror`
-> so that they can `reduce logerror`.
+> As a `real-estate listing website`, 
+> I want `predictions of my model's logerror`
+> so that I can `reduce my model's logerror`.
 
 
 ### Deliverables

@@ -76,27 +76,6 @@ def cat_to_colors(s):
     x = s.apply(lambda x: colors[cats.index(x)])
     return x
 
-#####################################################
-#               STATISTICS SNIPPETS                 #
-#####################################################
-
-# Prettify chi^2 test
-def chi2_test(df, alpha=0.05):
-    chi2, p, degf, expected = stats.chi2_contingency(df)
-    print('Observed\n')
-    print(df.values)
-    print('---\nExpected\n')
-    print(expected.astype(int))
-    print('---\n')
-    print(f'chi^2 = {chi2:.4f}')
-    print(f'degf = {degf}')
-    print(f'p     = {p:.4f}')
-    print('---\n')
-    if p < alpha:
-        print("We reject the null hypothesis")
-    else:
-        print("We fail to reject the null hypothesis")
-
 
 #####################################################
 #                   DATA GETTING                    #
@@ -392,7 +371,9 @@ def anova_variance_in_target_for_cat(df, target, cat, alpha=0.5):
     result={'reject': p < alpha,
             'h0' : f"There is no variance in {target} between subsets of {cat}",
             'stat_name': 'F',
-            'stat': stat
+            'stat': stat,
+            'p_value': p,
+            'alpha': alpha
         }
     return result
 
